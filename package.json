@@ -1,0 +1,22 @@
+{
+	"name": "binsrch",
+	"engines": {
+		"node": ">=12"
+	},
+	"description": "Provides efficient, pure JavaScript binary search functionality for sorted arrays, includes methods: findLast, findLastLess, findLastLessOrEqual, findFirst, findFirstGreater, findFirstGreaterOrEqual",
+	"version": "1.0.0",
+	"repository": {
+		"url": "git://github.com/alexey-komarov/node-binsrch.git"
+	},
+	"main": "index.js",
+	"scripts": {
+		"preinstall": "node scripts/select-mocha-version.js",
+		"test": "mocha"
+	},
+	"author": "Alexey Komarov <akomarov.mobile@gmail.com>",
+	"dependencies": {},
+	"devDependencies": {
+		"mocha": ">=3.0.2"
+	},
+	"license": "MIT"
+}
