@@ -6,7 +6,7 @@ const assert = require('assert');
 const ref = {
 	findFirst: function(arr, x) {
 		for (let i = 0; i < arr.length; i++) {
-			if (arr[i] == x) {
+			if (arr[i] === x) {
 				return i;
 			}
 		}
@@ -36,7 +36,7 @@ const ref = {
 
 	findLast: function (arr, x) {
 		for (let i = arr.length - 1; i >= 0; i--) {
-			if (arr[i] == x) {
+			if (arr[i] === x) {
 				return i;
 			}
 		}
@@ -62,6 +62,16 @@ const ref = {
 		}
 
 		return -1;
+	},
+
+	contains: function(arr, x) {
+		for (let i = arr.length - 1; i >= 0; i--) {
+			if (arr[i] === x) {
+				return true;
+			}
+		}
+
+		return false;
 	},
 };
 
@@ -93,7 +103,7 @@ function testMethod(method) {
 		const arrayLen = Math.round(Math.random() * maxArrayLen);
 		const maxIterations = Math.trunc(Math.log2(arrayLen || 1)) + 1;
 
-		const arr = [];
+		const arr = new Array(arrayLen);
 
 		for (let j = 0; j < arrayLen; j++) {
 			arr[j] = Math.round(Math.random() * maxArrayLen * 4);
@@ -114,8 +124,8 @@ function testMethod(method) {
 		const x = Math.round(Math.random() * maxArrayLen * 4);
 
 		assert.strictEqual(
-			bs[method](arr, _createComparator(x)),
-			ref[method](arr, x)
+			ref[method](arr, x),
+			bs[method](arr, _createComparator(x))
 		);
 
 		assert(
@@ -126,7 +136,5 @@ function testMethod(method) {
 }
 
 module.exports = {
-	maxArrayLen: maxArrayLen,
-	iterations: iterations,
 	testMethod: testMethod,
 };

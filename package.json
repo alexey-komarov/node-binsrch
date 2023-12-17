@@ -4,11 +4,12 @@
 		"node": ">=12"
 	},
 	"description": "Provides efficient, pure JavaScript binary search functionality for sorted arrays, includes methods: findLast, findLastLess, findLastLessOrEqual, findFirst, findFirstGreater, findFirstGreaterOrEqual",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"keywords": [
 		"binary",
 		"search",
 		"binary-search",
+		"contains",
 		"findFirst",
 		"findFirstGreater",
 		"findFirstGreaterOrEqual",

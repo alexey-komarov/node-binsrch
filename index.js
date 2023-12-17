@@ -38,7 +38,7 @@ function findLast(arr, cmp) {
 	cmp = _getComparator(cmp);
 
 	let len = arr.length;
-	let pos = len >> 1;
+	let pos = len >>> 1;
 	let result = -1;
 	let start = 0;
 	let cres;
@@ -48,13 +48,13 @@ function findLast(arr, cmp) {
 
 		if (cres === 0) {
 			result = start = pos;
-			pos += (len - pos) >> 1 || 1;
+			pos += (len - pos) >>> 1 || 1;
 		} else if (cres > 0) {
 			len = pos;
-			pos = start + (((pos - start) >> 1) || pos - 1);
+			pos = start + (((pos - start) >>> 1) || pos - 1);
 		} else {
 			start = pos;
-			pos += (len - pos) >> 1 || 1;
+			pos += (len - pos) >>> 1 || 1;
 		}
 	}
 
@@ -65,17 +65,17 @@ function findLastLessOrEqual(arr, cmp) {
 	cmp = _getComparator(cmp);
 
 	let len = arr.length;
-	let pos = len >> 1;
+	let pos = len >>> 1;
 	let result = -1;
 	let start = 0;
 
 	while (pos >= start && pos < len) {
 		if (cmp(arr[pos]) <= 0) {
 			result = start = pos;
-			pos += (len - pos) >> 1 || 1;
+			pos += (len - pos) >>> 1 || 1;
 		} else {
 			len = pos;
-			pos = start + (((pos - start) >> 1) || pos - 1);
+			pos = start + (((pos - start) >>> 1) || pos - 1);
 		}
 	}
 
@@ -86,17 +86,17 @@ function findLastLess(arr, cmp) {
 	cmp = _getComparator(cmp);
 
 	let len = arr.length;
-	let pos = len >> 1;
+	let pos = len >>> 1;
 	let result = -1;
 	let start = 0;
 
 	while (pos >= start && pos < len) {
 		if (cmp(arr[pos]) < 0) {
 			result = start = pos;
-			pos += (len - pos) >> 1 || 1;
+			pos += (len - pos) >>> 1 || 1;
 		} else {
 			len = pos;
-			pos = start + (((pos - start) >> 1) || pos - 1);
+			pos = start + (((pos - start) >>> 1) || pos - 1);
 		}
 	}
 
@@ -106,7 +106,7 @@ function findLastLess(arr, cmp) {
 function findFirst(arr, cmp) {
 	cmp = _getComparator(cmp);
 	let len = arr.length;
-	let pos = len >> 1;
+	let pos = len >>> 1;
 	let result = -1;
 	let start = 0;
 	let cres;
@@ -117,13 +117,13 @@ function findFirst(arr, cmp) {
 		if (cres === 0) {
 			result = pos;
 			len = pos;
-			pos = start + (((pos - start) >> 1) || pos - 1);
+			pos = start + (((pos - start) >>> 1) || pos - 1);
 		} else if (cres > 0) {
 			len = pos;
-			pos = start + (((pos - start) >> 1) || pos - 1);
+			pos = start + (((pos - start) >>> 1) || pos - 1);
 		} else {
 			start = pos;
-			pos += (len - pos) >> 1 || 1;
+			pos += (len - pos) >>> 1 || 1;
 		}
 	}
 
@@ -134,7 +134,7 @@ function findFirstGreaterOrEqual(arr, cmp) {
 	cmp = _getComparator(cmp);
 
 	let len = arr.length;
-	let pos = len >> 1;
+	let pos = len >>> 1;
 	let result = -1;
 	let start = 0;
 
@@ -142,10 +142,10 @@ function findFirstGreaterOrEqual(arr, cmp) {
 		if (cmp(arr[pos]) >= 0) {
 			result = pos;
 			len = pos;
-			pos = start + (((pos - start) >> 1) || pos - 1);
+			pos = start + (((pos - start) >>> 1) || pos - 1);
 		} else {
 			start = pos;
-			pos += (len - pos) >> 1 || 1;
+			pos += (len - pos) >>> 1 || 1;
 		}
 	}
 
@@ -156,7 +156,7 @@ function findFirstGreater(arr, cmp) {
 	cmp = _getComparator(cmp);
 
 	let len = arr.length;
-	let pos = len >> 1;
+	let pos = len >>> 1;
 	let result = -1;
 	let start = 0;
 
@@ -164,14 +164,41 @@ function findFirstGreater(arr, cmp) {
 		if (cmp(arr[pos]) > 0) {
 			result = pos;
 			len = pos;
-			pos = start + (((pos - start) >> 1) || pos - 1);
+			pos = start + (((pos - start) >>> 1) || pos - 1);
 		} else {
 			start = pos;
-			pos += (len - pos) >> 1 || 1;
+			pos += (len - pos) >>> 1 || 1;
 		}
 	}
 
 	return result;
+}
+
+function contains(arr, cmp) {
+	cmp = _getComparator(cmp);
+	let len = arr.length;
+	let pos = len >>> 1;
+	let result = -1;
+	let start = 0;
+	let cres;
+
+	while (pos >= start && pos < len) {
+		cres = cmp(arr[pos]);
+
+		if (cres === 0) {
+			return true;
+		}
+
+		if (cres > 0) {
+			len = pos;
+			pos = start + (((pos - start) >>> 1) || pos - 1);
+		} else {
+			start = pos;
+			pos += (len - pos) >>> 1 || 1;
+		}
+	}
+
+	return false;
 }
 
 module.exports = {
@@ -182,4 +209,5 @@ module.exports = {
 	findLast: findLast,
 	findLastLess: findLastLess,
 	findLastLessOrEqual: findLastLessOrEqual,
-}
+	contains: contains,
+};

@@ -41,6 +41,11 @@ Note: The input array must be sorted in ascending order.
 - Finds the last element in `arr` that is less than or equal to the target.
 - Returns the index of the found element, or `-1` if not found.
 
+### `contains(arr, cmp)`
+- Finds if `arr` contains the target element.
+- The method returns true as soon as the value is found.
+  This can improve performance in scenarios where the exact index is not needed.
+
 ## Usage
 
 ```js
@@ -75,7 +80,35 @@ bs.findFirst([
 	return 0;
 }); // returns 2
 
+bs.contains([1, 2, 3, 3, 4], 3); // returns true
+bs.contains([1, 2, 3, 3, 5], 4); // returns false
 ```
+
+## Testing
+
+Besides smoke unit tests which test the most basic cases, there are two
+additonal extended tests which are not run by default.
+
+## Testing
+
+In addition to basic smoke unit tests, which cover the most fundamental cases,
+there are two additional extended tests that are not run by default:
+
+1. **Random Tests**:
+   This test runs for 1,000,000 iterations. Each iteration uses a random array
+   with a length of up to 2000 characters. A random search value is chosen,
+   and the result is compared with the value found using linear search.
+   See `random_test` directory.
+
+2. **Long Array Test**:
+   This test is conducted on a 4GB `Uint8Array` filled with numbers ranging
+   from 0 to 255. See 'random_test directory.
+   See `long_array_test` directory.
+
+3. **Efficiency Test for Each Case**:
+   In addition to the tests mentioned above, each test includes an additional
+   check. This check ensures that the number of iterations does not exceed
+   `log2(length_of_array)`..
 
 ## Compatibility with Older Node.js Versions
 

@@ -6,9 +6,9 @@ const assert = require('assert');
 describe('comparator', () => {
 	it('should create correct comparator', () => {
 		const cmp = bs.createComparator(10);
-		assert.strictEqual(cmp(1), -1);
-		assert.strictEqual(cmp(15), 1);
-		assert.strictEqual(cmp(10), 0);
+		assert.strictEqual(-1, cmp(1));
+		assert.strictEqual(1, cmp(15));
+		assert.strictEqual(0, cmp(10));
 	});
 
 	it('should work with custom comparator', () => {
@@ -26,11 +26,12 @@ describe('comparator', () => {
 			return 0;
 		};
 
-		assert.strictEqual(bs.findFirst(arr, cmp), 2);
-		assert.strictEqual(bs.findFirstGreater(arr, cmp), 3);
-		assert.strictEqual(bs.findFirstGreaterOrEqual(arr, cmp), 2);
-		assert.strictEqual(bs.findLast(arr, cmp), 2);
-		assert.strictEqual(bs.findLastLess(arr, cmp), 1);
-		assert.strictEqual(bs.findLastLessOrEqual(arr, cmp), 2);
+		assert.strictEqual(2, bs.findFirst(arr, cmp));
+		assert.strictEqual(3, bs.findFirstGreater(arr, cmp));
+		assert.strictEqual(2, bs.findFirstGreaterOrEqual(arr, cmp));
+		assert.strictEqual(2, bs.findLast(arr, cmp));
+		assert.strictEqual(1, bs.findLastLess(arr, cmp));
+		assert.strictEqual(2, bs.findLastLessOrEqual(arr, cmp));
+		assert.strictEqual(true, bs.contains(arr, cmp));
 	});
 });
