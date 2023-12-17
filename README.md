@@ -102,8 +102,7 @@ there are two additional extended tests that are not run by default:
 
 2. **Long Array Test**:
    This test is conducted on a 4GB `Uint8Array` filled with numbers ranging
-   from 0 to 255. See 'random_test directory.
-   See `long_array_test` directory.
+   from 0 to 255. See `long_array_test` directory.
 
 3. **Efficiency Test for Each Case**:
    In addition to the tests mentioned above, each test includes an additional
